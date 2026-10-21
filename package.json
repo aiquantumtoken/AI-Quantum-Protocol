@@ -1,0 +1,17 @@
+{
+  "name": "wonderful-einstein",
+  "version": "1.0.0",
+  "description": "> **The First Post-Quantum Autonomous Agent Network on Solana.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "agent-twitter-client": "^0.0.18",
+    "puppeteer-core": "^25.15.0"
+  }
+}

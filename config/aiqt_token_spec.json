@@ -1,0 +1,76 @@
+{
+  "program_id": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "symbol": "AIQT",
+  "name": "AI Quantum Protocol",
+  "decimals": 9,
+  "total_supply": 1000000000,
+  "total_supply_base_units": "1000000000000000000",
+  "transfer_fee_basis_points": 50,
+  "maximum_fee": "5000000000000",
+  "extensions": [
+    "TransferFeeConfig",
+    "MetadataPointer",
+    "TokenMetadata"
+  ],
+  "allocations": {
+    "public_liquidity_dex": {
+      "percentage": 60,
+      "tokens": 600000000,
+      "description": "Raydium / DEX liquidity paired with SOL, 100% LP burned"
+    },
+    "agent_staking_pool": {
+      "percentage": 15,
+      "tokens": 150000000,
+      "description": "Yield reserve for verified high-performance autonomous agents"
+    },
+    "protocol_development": {
+      "percentage": 10,
+      "tokens": 100000000,
+      "description": "Multi-sig treasury with 6-month cliff and 18-month vesting"
+    },
+    "marketing_and_ecosystem": {
+      "percentage": 10,
+      "tokens": 100000000,
+      "description": "KOL partnerships, hackathons, and developer grants"
+    },
+    "flagship_agent_treasury": {
+      "percentage": 5,
+      "tokens": 50000000,
+      "description": "Autonomous AI Agent seed fund for compute & automated buybacks"
+    }
+  },
+  "onchain_metadata": {
+    "name": "AI Quantum Protocol",
+    "symbol": "AIQT",
+    "description": "The first post-quantum autonomous agent network on Solana. High-speed M2M settlements secured by lattice-based cryptography.",
+    "image": "https://raw.githubusercontent.com/aiqt-protocol/branding/main/logo.png",
+    "external_url": "https://aiqt.network",
+    "attributes": [
+      {
+        "trait_type": "Network",
+        "value": "Solana"
+      },
+      {
+        "trait_type": "Standard",
+        "value": "Token-2022"
+      },
+      {
+        "trait_type": "Security",
+        "value": "Post-Quantum Dilithium/Falcon Hybrid"
+      },
+      {
+        "trait_type": "Agentic M2M",
+        "value": "Enabled"
+      }
+    ],
+    "properties": {
+      "category": "utility",
+      "creators": [
+        {
+          "address": "AIQTxAgent1111111111111111111111111111111111",
+          "share": 100
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Environment variables & secrets (NEVER COMMIT)
+.env
+*.pem
+*.key
+agent_wallet.json
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# OS & Logs
+.DS_Store
+Thumbs.db
+*.log
