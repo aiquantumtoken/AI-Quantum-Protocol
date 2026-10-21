@@ -1,0 +1,20 @@
+{
+  "name": "@aiqt/agent-sdk",
+  "version": "0.1.0",
+  "description": "The Official Developer SDK for Autonomous AI Agents on Solana secured by Post-Quantum Cryptography.",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs"
+  },
+  "keywords": [
+    "solana",
+    "ai-agents",
+    "post-quantum",
+    "token-2022",
+    "dilithium",
+    "m2m"
+  ],
+  "author": "AI Quantum Protocol Core Team",
+  "license": "MIT"
+}
