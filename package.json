@@ -11,6 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@solana/spl-token": "^0.4.15",
+    "@solana/web3.js": "^1.99.0",
     "agent-twitter-client": "^0.0.18",
     "puppeteer-core": "^25.15.0"
   }

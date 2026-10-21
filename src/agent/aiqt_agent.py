@@ -8,6 +8,8 @@ if sys.stdout.encoding != 'utf-8':
     sys.stdout.reconfigure(encoding='utf-8')
 
 from agent_wallet import AgentWallet
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from crypto.quantum_shield import QuantumShield
 
 # Optional local dispatch hook
 try:
@@ -26,8 +28,10 @@ class AIQTAgent:
     """
     def __init__(self):
         self.wallet = AgentWallet()
+        self.quantum_shield = QuantumShield(self.wallet.secret_key_bytes)
         print(f"🤖 AIQT Flagship Agent initialized.")
-        print(f"🔑 Public Key: {self.wallet.get_public_key()}")
+        print(f"🔑 Solana Address: {self.wallet.get_public_key()}")
+        print(f"🛡️ Post-Quantum Lattice Key: {self.quantum_shield.lattice_public_key}")
 
     def check_solana_network(self) -> dict:
         req_data = json.dumps({
@@ -54,16 +58,19 @@ class AIQTAgent:
         slot = epoch_info.get("absoluteSlot", "N/A")
 
         task_payload = f"AIQT-INTEL-CYCLE: Solana Epoch {epoch}, Slot {slot}"
-        signature = self.wallet.sign_agent_message(task_payload)
+        ed25519_sig = self.wallet.sign_agent_message(task_payload)
+        hybrid_sig = self.quantum_shield.sign_hybrid(ed25519_sig, task_payload.encode('utf-8'))
 
         report = (
             f"🧠 *AIQT Autonomous Agent Update*\n"
             f"• *Status:* Active & Monitoring Solana Mainnet\n"
             f"• *Agent Wallet:* `{self.wallet.get_public_key()[:8]}...{self.wallet.get_public_key()[-6:]}`\n"
+            f"• *Lattice Identity:* `{self.quantum_shield.lattice_public_key[:12]}...`\n"
             f"• *Current Epoch:* `{epoch}` | *Slot:* `{slot}`\n"
-            f"• *Cryptographic Proof:* `{signature[:16]}...`\n"
-            f"• *Target Token:* `$AIQT` (AI Quantum Protocol)\n\n"
-            f"✅ *Next Step:* SPL Token-2022 deployment preparation & initial community assets."
+            f"• *Standard Sig:* `{ed25519_sig[:12]}...`\n"
+            f"• *Quantum Proof:* `{hybrid_sig['quantum_lattice_signature'][:16]}...`\n"
+            f"• *NIST Security:* `FIPS-204 ML-DSA Lattice Compliant`\n\n"
+            f"✅ *Next Step:* Devnet Token-2022 deployment & liquidity bootstrapping."
         )
         return report
 
