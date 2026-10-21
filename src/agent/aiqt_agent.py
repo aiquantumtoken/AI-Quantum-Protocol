@@ -9,9 +9,12 @@ if sys.stdout.encoding != 'utf-8':
 
 from agent_wallet import AgentWallet
 
-# Add parent directory to path to access telegram_notify
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-from telegram_notify import send_telegram_message
+# Optional local dispatch hook
+try:
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+    from telegram_notify import send_telegram_message
+except ImportError:
+    send_telegram_message = None
 
 SOLANA_RPC = "https://api.mainnet-beta.solana.com"
 

@@ -3,6 +3,14 @@
 *.pem
 *.key
 agent_wallet.json
+accounts.txt
+
+# Internal Operations & Social Admin Tools
+telegram_notify.py
+scripts/post_tweet.mjs
+scripts/test_twitter.mjs
+scripts/verify_x.mjs
+src/agent/twitter_client.py
 
 # Dependencies
 node_modules/
