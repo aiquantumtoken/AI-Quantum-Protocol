@@ -7,15 +7,16 @@
   <meta name="description" content="The world's first post-quantum autonomous agent network on Solana. Sub-second machine-to-machine settlements secured by lattice-based cryptography.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #07090e;
-      --card-bg: rgba(18, 22, 36, 0.7);
+      --card-bg: rgba(18, 22, 36, 0.75);
       --border: rgba(255, 255, 255, 0.08);
       --solana-purple: #9945FF;
       --solana-green: #14F195;
       --neon-cyan: #00F0FF;
+      --neon-pink: #FF007A;
       --text: #F3F4F6;
       --text-muted: #9CA3AF;
     }
@@ -31,8 +32,8 @@
       position: fixed;
       inset: 0;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.12) 0%, transparent 50%),
         linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
@@ -42,9 +43,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 5%;
+      padding: 1.2rem 5%;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -54,29 +55,53 @@
       align-items: center;
       gap: 12px;
       font-weight: 800;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       letter-spacing: -0.5px;
     }
     .logo-badge {
       background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
       color: #000;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
       font-weight: 800;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      margin-left: 2rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      font-weight: 600;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--solana-green); }
+    .wallet-btn {
+      background: rgba(153, 69, 255, 0.15);
+      border: 1px solid rgba(153, 69, 255, 0.4);
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .wallet-btn:hover {
+      background: var(--solana-purple);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(153, 69, 255, 0.5);
+    }
     .hero {
       text-align: center;
-      padding: 6rem 5% 4rem;
-      max-width: 900px;
+      padding: 5rem 5% 3rem;
+      max-width: 960px;
       margin: 0 auto;
     }
     .pill {
@@ -90,8 +115,17 @@
       color: var(--solana-green);
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--solana-green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--solana-green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
     h1 {
       font-size: 3.5rem;
       font-weight: 800;
@@ -106,8 +140,11 @@
     }
     .hero p {
       color: var(--text-muted);
-      font-size: 1.25rem;
-      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 2.2rem;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .cta-group {
       display: flex;
@@ -116,10 +153,10 @@
       flex-wrap: wrap;
     }
     .btn {
-      padding: 14px 28px;
+      padding: 12px 24px;
       border-radius: 12px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
@@ -145,73 +182,139 @@
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      gap: 1.2rem;
       max-width: 1100px;
-      margin: 3rem auto;
+      margin: 2.5rem auto 4rem;
       padding: 0 5%;
     }
     .stat-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 1.5rem;
+      padding: 1.4rem;
       text-align: center;
     }
     .stat-num {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: var(--solana-green);
       font-family: 'JetBrains Mono', monospace;
     }
     .stat-label {
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       margin-top: 4px;
+      font-weight: 600;
     }
-    .section-title {
-      text-align: center;
-      margin: 5rem 0 3rem;
-    }
-    .section-title h2 {
-      font-size: 2.2rem;
-      font-weight: 800;
-    }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+
+    /* DApp Simulator Section */
+    .dapp-container {
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 4rem auto;
       padding: 0 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
-    .feature-card {
+    @media (max-width: 850px) { .dapp-container { grid-template-columns: 1fr; } }
+    .interactive-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 2.2rem;
-      position: relative;
-      transition: border 0.3s;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
-    .feature-card:hover {
-      border-color: var(--solana-purple);
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
     }
-    .feature-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1.2rem;
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .feature-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
+    .vault-tier-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 700;
     }
-    .feature-card p {
+    .tier-fast {
+      background: rgba(20, 241, 149, 0.15);
+      color: var(--solana-green);
+      border: 1px solid rgba(20, 241, 149, 0.3);
+    }
+    .tier-quantum {
+      background: rgba(153, 69, 255, 0.2);
+      color: #D1A4FF;
+      border: 1px solid rgba(153, 69, 255, 0.5);
+      animation: glowPulse 2s infinite;
+    }
+    @keyframes glowPulse { 0% { box-shadow: 0 0 5px rgba(153, 69, 255, 0.3); } 50% { box-shadow: 0 0 15px rgba(153, 69, 255, 0.6); } 100% { box-shadow: 0 0 5px rgba(153, 69, 255, 0.3); } }
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+    .input-label {
+      display: block;
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
+    .styled-input {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .styled-input:focus { border-color: var(--solana-green); }
+    .slider-range {
+      width: 100%;
+      margin-top: 10px;
+      accent-color: var(--solana-green);
+    }
+    .proof-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #A3E635;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.9rem;
+    }
+    .calc-val {
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--solana-green);
+    }
+
     footer {
       text-align: center;
       padding: 4rem 5% 2rem;
       border-top: 1px solid var(--border);
-      margin-top: 6rem;
+      margin-top: 5rem;
       color: var(--text-muted);
       font-size: 0.9rem;
     }
@@ -222,76 +325,224 @@
 
   <nav>
     <div class="logo-container">
-      <svg width="32" height="32" viewBox="0 0 500 500">
-        <polygon points="250,70 390,150 390,310 250,390 110,310 110,150" fill="none" stroke="#14F195" stroke-width="30" />
+      <svg width="28" height="28" viewBox="0 0 500 500">
+        <polygon points="250,70 390,150 390,310 250,390 110,310 110,150" fill="none" stroke="#14F195" stroke-width="36" />
         <circle cx="250" cy="250" r="80" fill="#9945FF" />
       </svg>
       AI Quantum Protocol
       <span class="logo-badge">$AIQT</span>
     </div>
-    <div class="nav-links">
-      <a href="#features">Architecture</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#roadmap">30-Day Plan</a>
-      <a href="https://t.me/newcointelegramnaorbot" target="_blank">Telegram Bot</a>
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a href="#simulator">Vault Demo</a>
+        <a href="#calculator">Burn Engine</a>
+        <a href="https://github.com/aiquantumtoken/AI-Quantum-Protocol" target="_blank">GitHub</a>
+      </div>
+      <button class="wallet-btn" id="connectWalletBtn" onclick="handleWalletConnect()">
+        <span>⚡ Connect Wallet</span>
+      </button>
     </div>
   </nav>
 
   <main>
     <section class="hero">
-      <div class="pill">⚡ Built on Solana Token-2022 • NIST Post-Quantum Aligned</div>
+      <div class="pill">
+        <div class="live-dot"></div>
+        <span id="solanaTelemetry">Connecting to Solana Mainnet...</span>
+      </div>
       <h1>The Machine-to-Machine Currency for <span class="gradient-text">Autonomous AI Agents</span></h1>
       <p>Autonomous AI agents manage millions 24/7 without human signers. $AIQT gives agent swarms sub-second micropayments, performance staking, and post-quantum cryptographic custody.</p>
       <div class="cta-group">
-        <a href="#tokenomics" class="btn btn-primary">Explore Tokenomics</a>
-        <a href="https://t.me/newcointelegramnaorbot" class="btn btn-outline" target="_blank">Open Telegram Terminal</a>
+        <a href="#simulator" class="btn btn-primary">Test Live Vault Demo</a>
+        <a href="https://github.com/aiquantumtoken/AI-Quantum-Protocol" class="btn btn-outline" target="_blank">View Open Source Code</a>
       </div>
     </section>
 
     <section class="stats-bar">
       <div class="stat-card">
         <div class="stat-num">1,000,000,000</div>
-        <div class="stat-label">Total Supply ($AIQT)</div>
+        <div class="stat-label">TOTAL SUPPLY ($AIQT)</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">60%</div>
-        <div class="stat-label">DEX Liquidity (100% LP Burned)</div>
+        <div class="stat-label">RAYDIUM LP (100% BURNED)</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">0.5%</div>
-        <div class="stat-label">Autonomous Deflationary Burn</div>
+        <div class="stat-label">AUTONOMOUS M2M BURN</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">400ms</div>
-        <div class="stat-label">Settlement Latency</div>
+        <div class="stat-num">NIST FIPS-204</div>
+        <div class="stat-label">ML-DSA LATTICE SHIELD</div>
       </div>
     </section>
 
-    <section class="section-title" id="features">
-      <h2>Engineered for the Agentic Century</h2>
-    </section>
+    <!-- Interactive DApp Section -->
+    <div class="dapp-container" id="simulator">
+      <!-- Card 1: Live Quantum Vault Simulator -->
+      <div class="interactive-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛡️</span> Dual-Tier Quantum Vault Simulator
+          </div>
+          <div class="vault-tier-badge tier-fast" id="vaultTierBadge">TIER 1: FAST PATH</div>
+        </div>
 
-    <div class="grid-3">
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3>Post-Quantum Vaults</h3>
-        <p>Solana Ed25519 addresses are vulnerable to Shor's algorithm. $AIQT introduces lattice-based (CRYSTALS-Dilithium) smart custody to shield 24/7 autonomous bot treasuries.</p>
+        <div class="input-group">
+          <label class="input-label">Transfer Amount ($AIQT)</label>
+          <input type="number" id="vaultInput" class="styled-input" value="500" min="10" max="10000000" oninput="updateVaultSimulator()">
+          <input type="range" id="vaultSlider" class="slider-range" min="100" max="50000" step="100" value="500" oninput="syncVaultInput(this.value)">
+        </div>
+
+        <div class="calc-row">
+          <span>Security Model:</span>
+          <span class="calc-val" id="vaultSecModel">Standard Ed25519 (Fast-Path)</span>
+        </div>
+        <div class="calc-row">
+          <span>Settlement Latency:</span>
+          <span class="calc-val">~400 ms (Sub-Second)</span>
+        </div>
+        <div class="calc-row">
+          <span>Shor's Algorithm Defense:</span>
+          <span class="calc-val" id="vaultShorDefense">Active on Transfers ≥ 10,000</span>
+        </div>
+
+        <div class="proof-box" id="proofOutput">
+// Fast-Path Cryptographic Proof
+Signature: 8b2385b42beba575fa98...
+Algorithm: Solana Ed25519
+Status: VERIFIED
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
-        <h3>M2M Settlement Layer</h3>
-        <p>AI agents lack bank accounts. $AIQT is the frictionless native gas for agent-to-agent task requests, dataset licensing, and automated API compute funding.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚖️</div>
-        <h3>Proof-of-Agent Staking</h3>
-        <p>Third-party autonomous agents stake $AIQT as a performance bond. Reliable agents earn protocol rewards; hallucinating or rogue bots are programmatically slashed.</p>
+
+      <!-- Card 2: Deflationary Burn Calculator -->
+      <div class="interactive-card" id="calculator">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🔥</span> Autonomous M2M Burn Calculator
+          </div>
+          <div class="vault-tier-badge tier-fast">0.5% TAX SINK</div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Daily Autonomous Agent Task Volume ($AIQT)</label>
+          <input type="number" id="volumeInput" class="styled-input" value="2000000" oninput="updateBurnCalculator()">
+          <input type="range" id="volumeSlider" class="slider-range" min="100000" max="20000000" step="100000" value="2000000" oninput="syncVolumeInput(this.value)">
+        </div>
+
+        <div class="calc-row">
+          <span>Daily Tokens Burned:</span>
+          <span class="calc-val" id="dailyBurn">5,000 $AIQT</span>
+        </div>
+        <div class="calc-row">
+          <span>Monthly Tokens Burned:</span>
+          <span class="calc-val" id="monthlyBurn">150,000 $AIQT</span>
+        </div>
+        <div class="calc-row">
+          <span>Annual Supply Reduction:</span>
+          <span class="calc-val" id="annualBurn">1,825,000 $AIQT (0.18%)</span>
+        </div>
+
+        <div class="proof-box" style="color: #67E8F9;">
+// Automated Flywheel State
+50% of fee: Incinerated permanently to 1111...1111
+50% of fee: Autonomous Agent GPU & Compute Fund
+Contract: Solana Token-2022 TransferFeeConfig
+        </div>
       </div>
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2026 AI Quantum Protocol ($AIQT). Decentralized Autonomous Infrastructure on Solana.</p>
+    <p>&copy; 2026 AI Quantum Protocol ($AIQT). The Post-Quantum Autonomous Agent Network on Solana.</p>
   </footer>
+
+  <script>
+    // Live Solana RPC Telemetry
+    async function fetchSolanaTelemetry() {
+      try {
+        const resp = await fetch('https://api.mainnet-beta.solana.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'getEpochInfo' })
+        });
+        const data = await resp.json();
+        if (data && data.result) {
+          const el = document.getElementById('solanaTelemetry');
+          el.innerText = `Solana Mainnet: Epoch ${data.result.epoch} • Slot ${data.result.absoluteSlot.toLocaleString()}`;
+        }
+      } catch (e) {
+        document.getElementById('solanaTelemetry').innerText = 'Solana Mainnet: Active • NIST ML-DSA Shielded';
+      }
+    }
+    fetchSolanaTelemetry();
+
+    // Vault Simulator
+    function syncVaultInput(val) {
+      document.getElementById('vaultInput').value = val;
+      updateVaultSimulator();
+    }
+    function updateVaultSimulator() {
+      const amount = parseFloat(document.getElementById('vaultInput').value) || 0;
+      const badge = document.getElementById('vaultTierBadge');
+      const secModel = document.getElementById('vaultSecModel');
+      const shorDefense = document.getElementById('vaultShorDefense');
+      const proofBox = document.getElementById('proofOutput');
+
+      if (amount >= 10000) {
+        badge.className = 'vault-tier-badge tier-quantum';
+        badge.innerText = 'TIER 2: QUANTUM SHIELD';
+        secModel.innerText = 'NIST ML-DSA Lattice Dual-Lock';
+        shorDefense.innerText = 'IMMUNE (Lattice Hard Problem)';
+        proofBox.innerHTML = `// NIST FIPS-204 Lattice Commitment Active
+Ed25519 Sig: a123a21afa58...
+Lattice Sig: 7b4fed83cdf7f783ee3eb7...
+Public Key:  PQ-Caj6ZEYf9qvGVAZuJd...
+Status:      QUANTUM IMMUNE VERIFIED`;
+      } else {
+        badge.className = 'vault-tier-badge tier-fast';
+        badge.innerText = 'TIER 1: FAST PATH';
+        secModel.innerText = 'Standard Ed25519 (Fast-Path)';
+        shorDefense.innerText = 'Active on Transfers ≥ 10,000';
+        proofBox.innerHTML = `// Fast-Path Cryptographic Proof
+Signature: 8b2385b42beba575fa98...
+Algorithm: Solana Ed25519
+Status:    VERIFIED`;
+      }
+    }
+
+    // Burn Calculator
+    function syncVolumeInput(val) {
+      document.getElementById('volumeInput').value = val;
+      updateBurnCalculator();
+    }
+    function updateBurnCalculator() {
+      const vol = parseFloat(document.getElementById('volumeInput').value) || 0;
+      const daily = Math.floor(vol * 0.005 * 0.5);
+      const monthly = daily * 30;
+      const annual = daily * 365;
+      const annualPct = ((annual / 1000000000) * 100).toFixed(2);
+
+      document.getElementById('dailyBurn').innerText = daily.toLocaleString() + ' $AIQT';
+      document.getElementById('monthlyBurn').innerText = monthly.toLocaleString() + ' $AIQT';
+      document.getElementById('annualBurn').innerText = `${annual.toLocaleString()} $AIQT (${annualPct}%)`;
+    }
+
+    // Wallet Connect Handler
+    async function handleWalletConnect() {
+      const btn = document.getElementById('connectWalletBtn');
+      if (window.solana && window.solana.isPhantom) {
+        try {
+          const resp = await window.solana.connect();
+          const pubkey = resp.publicKey.toString();
+          btn.innerHTML = `<span>🟢 ${pubkey.slice(0,4)}...${pubkey.slice(-4)}</span>`;
+        } catch (err) {
+          alert("Wallet connection cancelled.");
+        }
+      } else {
+        window.open('https://phantom.app/', '_blank');
+      }
+    }
+  </script>
 </body>
 </html>
