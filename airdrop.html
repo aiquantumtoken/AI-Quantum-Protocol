@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Quantum Protocol ($AIQT) | Community Airdrop Checker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 36, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --solana-purple: #9945FF;
+      --solana-green: #14F195;
+      --neon-cyan: #00F0FF;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.12) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .badge {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .wallet-btn {
+      background: rgba(20, 241, 149, 0.15);
+      border: 1px solid rgba(20, 241, 149, 0.4);
+      color: var(--solana-green);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 5%;
+      flex: 1;
+    }
+    .checker-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+    .tag {
+      color: var(--solana-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .score-circle {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--solana-green);
+      margin-bottom: 2rem;
+      background: rgba(20, 241, 149, 0.05);
+      box-shadow: 0 0 25px rgba(20, 241, 149, 0.25);
+    }
+    .score-num {
+      font-size: 2.6rem;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+    }
+    .score-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .checklist {
+      text-align: left;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--solana-green);
+    }
+    .alloc-box {
+      background: rgba(153, 69, 255, 0.12);
+      border: 1px solid rgba(153, 69, 255, 0.3);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+    }
+    .alloc-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--solana-green);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .share-btn {
+      background: #1D9BF0;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .share-btn:hover {
+      box-shadow: 0 0 25px rgba(29, 155, 240, 0.5);
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 5%;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <nav>
+    <a href="index.html" class="logo">
+      <svg width="24" height="24" viewBox="0 0 500 500">
+        <polygon points="250,70 390,150 390,310 250,390 110,310 110,150" fill="none" stroke="#14F195" stroke-width="40" />
+        <circle cx="250" cy="250" r="90" fill="#9945FF" />
+      </svg>
+      AI Quantum Protocol
+      <span class="badge">$AIQT</span>
+    </a>
+    <button class="wallet-btn" id="walletBtn" onclick="connectWallet()">⚡ Connect Wallet</button>
+  </nav>
+
+  <div class="container">
+    <div class="checker-card">
+      <div class="tag">100,000,000 $AIQT ECOSYSTEM POOL</div>
+      <h1>Post-Quantum <span class="gradient-text">Community Airdrop</span></h1>
+      <p class="subtitle">Check your wallet eligibility and claim your share of the genesis ecosystem allocation.</p>
+
+      <div class="score-circle">
+        <div class="score-num" id="scoreDisplay">50</div>
+        <div class="score-lbl">SCORE / 100</div>
+      </div>
+
+      <div class="alloc-box">
+        <div style="font-size: 0.9rem; color: #D1A4FF; font-weight: 700; margin-bottom: 4px;">ESTIMATED ALLOCATION</div>
+        <div class="alloc-num" id="allocDisplay">7,500 $AIQT</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;" id="tierDisplay">Tier 2: Agent Builder (1.5x Multiplier)</div>
+      </div>
+
+      <div class="checklist">
+        <label class="check-item">
+          <input type="checkbox" id="chkAi" checked onchange="recalculate()">
+          <div>
+            <strong>Holds Solana AI Agent Tokens</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Holding $AI16Z, $VIRTUAL, $GRASS, or similar agent tokens (+30 pts)</div>
+          </div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="chkTx" checked onchange="recalculate()">
+          <div>
+            <strong>Solana Mainnet Active User</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">More than 20 on-chain Solana transactions (+20 pts)</div>
+          </div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="chkGh" onchange="recalculate()">
+          <div>
+            <strong>Starred GitHub Repository</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Support the open-source codebase on github.com (+25 pts)</div>
+          </div>
+        </label>
+        <label class="check-item">
+          <input type="checkbox" id="chkTg" onchange="recalculate()">
+          <div>
+            <strong>Connected to Telegram Sentinel Bot</strong>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Interacted with @newcointelegramnaorbot (+25 pts)</div>
+          </div>
+        </label>
+      </div>
+
+      <a id="shareTwitterBtn" href="#" target="_blank" class="share-btn">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Share Allocation on X to Lock In
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 AI Quantum Protocol ($AIQT). Decentralized Community Allocation.</p>
+  </footer>
+
+  <script>
+    function recalculate() {
+      let score = 0;
+      if (document.getElementById('chkAi').checked) score += 30;
+      if (document.getElementById('chkTx').checked) score += 20;
+      if (document.getElementById('chkGh').checked) score += 25;
+      if (document.getElementById('chkTg').checked) score += 25;
+
+      document.getElementById('scoreDisplay').innerText = score;
+
+      let alloc = 0;
+      let tier = "Tier Ineligible";
+      if (score >= 80) {
+        alloc = 20000;
+        tier = "Tier 1: Quantum Sentinel (2.0x Multiplier)";
+      } else if (score >= 50) {
+        alloc = 7500;
+        tier = "Tier 2: Agent Builder (1.5x Multiplier)";
+      } else if (score >= 20) {
+        alloc = 1500;
+        tier = "Tier 3: Ecosystem Scout (1.0x Multiplier)";
+      }
+
+      document.getElementById('allocDisplay').innerText = alloc.toLocaleString() + " $AIQT";
+      document.getElementById('tierDisplay').innerText = tier;
+
+      const tweetText = encodeURIComponent(`I just verified my post-quantum eligibility for the @AIQuantumToken ($AIQT) ecosystem airdrop! 🤖🛡️\n\nEstimated Allocation: ${alloc.toLocaleString()} $AIQT\nTier: ${tier}\n\nCheck your wallet: https://aiquantumtoken.github.io/AI-Quantum-Protocol/airdrop.html`);
+      document.getElementById('shareTwitterBtn').href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+    }
+
+    async function connectWallet() {
+      const btn = document.getElementById('walletBtn');
+      if (window.solana && window.solana.isPhantom) {
+        try {
+          const resp = await window.solana.connect();
+          const pubkey = resp.publicKey.toString();
+          btn.innerText = `🟢 ${pubkey.slice(0,4)}...${pubkey.slice(-4)}`;
+        } catch(e) {}
+      } else {
+        window.open('https://phantom.app/', '_blank');
+      }
+    }
+
+    recalculate();
+  </script>
+</body>
+</html>
