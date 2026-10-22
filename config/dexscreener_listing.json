@@ -1,0 +1,27 @@
+{
+  "token_name": "AI Quantum Protocol",
+  "token_symbol": "AIQT",
+  "blockchain": "solana",
+  "token_standard": "Token-2022",
+  "token_address": "HRh1TphikN18wjXdF1iKAHTze4VybWhq17HmByrRrTkN",
+  "dex": "Raydium CPMM",
+  "description": "AI Quantum Protocol ($AIQT) is the first post-quantum autonomous agent network on Solana. Built on Token-2022 with native 0.5% M2M deflationary burn, Dual-Tier Quantum Vaults, and open-source @aiqt/agent-sdk.",
+  "links": {
+    "website": "https://aiquantumtoken.github.io/AI-Quantum-Protocol/",
+    "github": "https://github.com/aiquantumtoken/AI-Quantum-Protocol",
+    "whitepaper": "https://github.com/aiquantumtoken/AI-Quantum-Protocol/blob/main/WHITEPAPER.md",
+    "twitter": "https://x.com/AIQuantumToken",
+    "telegram": "https://t.me/newcointelegramnaorbot"
+  },
+  "branding": {
+    "icon_url": "https://raw.githubusercontent.com/aiquantumtoken/AI-Quantum-Protocol/main/assets/logo.svg",
+    "header_banner_url": "https://raw.githubusercontent.com/aiquantumtoken/AI-Quantum-Protocol/main/assets/logo.svg"
+  },
+  "tags": [
+    "AI Agents",
+    "Solana",
+    "Post-Quantum",
+    "Token-2022",
+    "Deflationary"
+  ]
+}
