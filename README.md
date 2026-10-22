@@ -19,18 +19,20 @@
 
 ---
 
-## Repository Structure
-```
-├── WHITEPAPER.md               # Complete cryptographic and economic whitepaper
-├── 30_day_launch_plan.md       # Master day-by-day roadmap
-├── telegram_notify.py          # Secure Telegram bridge for team alerts
-├── .env                        # Local configuration
-└── src/
-    └── agent/
-        ├── agent_wallet.py     # Autonomous agent key management
-        ├── aiqt_agent.py       # Live Solana mainnet agent monitor & signer
-        └── agent_wallet.json   # Local agent key identity
-```
+## Live Web3 DApp & Terminal
+🌐 **Interactive Web Portal:** [aiquantumtoken.github.io/AI-Quantum-Protocol](https://aiquantumtoken.github.io/AI-Quantum-Protocol/)
+* Interactive Dual-Tier Quantum Vault Simulator
+* Real-time 0.5% M2M Deflationary Burn Calculator
+* Live Solana Mainnet Telemetry feed
+
+---
+
+## Ecosystem & Developer Tooling
+* 🤖 **ElizaOS Plugin (`@aiqt/plugin-solana-quantum`):** Plug-and-play post-quantum smart custody for Eliza agents (`packages/eliza-plugin/`).
+* 📦 **Core SDK (`@aiqt/agent-sdk`):** Autonomous agent transaction signing and fee calculation library (`packages/agent-sdk/`).
+* 🛡️ **Security Audit:** 100/100 Clean Score verified (`AUDIT_REPORT.md`).
+* 📐 **Architecture:** Deep cryptographic specification & threat models (`ARCHITECTURE.md`).
+* 🗺️ **Long-Term Roadmap:** 2026–2027 Expansion plan (`ROADMAP_2026.md`).
 
 ---
 
