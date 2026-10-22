@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Quantum Protocol ($AIQT) | Institutional Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 36, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --solana-purple: #9945FF;
+      --solana-green: #14F195;
+      --neon-cyan: #00F0FF;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.12) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4%;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .slide-progress {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .deck-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 5%;
+      position: relative;
+    }
+    .slide {
+      display: none;
+      max-width: 960px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 3.5rem;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .slide.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .slide-tag {
+      color: var(--solana-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .slide-content {
+      color: #D1D5DB;
+      font-size: 1.15rem;
+      line-height: 1.7;
+    }
+    .slide-content ul {
+      margin-left: 1.5rem;
+      margin-top: 1rem;
+    }
+    .slide-content li {
+      margin-bottom: 0.8rem;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .feature-box {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+    .feature-box h4 {
+      font-size: 1.1rem;
+      color: var(--solana-green);
+      margin-bottom: 0.5rem;
+    }
+    .feature-box p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4%;
+      border-top: 1px solid var(--border);
+      background: rgba(7, 9, 14, 0.8);
+    }
+    .nav-btn-group {
+      display: flex;
+      gap: 1rem;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: var(--solana-green);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--solana-green), var(--neon-cyan));
+      color: #000;
+      border: none;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(20, 241, 149, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <header>
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 500 500">
+        <polygon points="250,70 390,150 390,310 250,390 110,310 110,150" fill="none" stroke="#14F195" stroke-width="40" />
+        <circle cx="250" cy="250" r="90" fill="#9945FF" />
+      </svg>
+      AI Quantum Protocol
+      <span class="badge">$AIQT</span>
+    </div>
+    <div class="slide-progress" id="slideIndicator">Slide 1 of 7</div>
+  </header>
+
+  <div class="deck-container">
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <div class="slide-tag">01 // THE SYSTEMIC CRISIS</div>
+      <h2>The Fatal Flaw of <span class="gradient-text">Autonomous AI Agents</span></h2>
+      <div class="slide-content">
+        <p>Crypto is rapidly transitioning from human retail traders to <strong>24/7 autonomous AI agents</strong> managing billions in decentralized treasuries.</p>
+        <div class="grid-2">
+          <div class="feature-box">
+            <h4>Exposed Live Server Keys</h4>
+            <p>Unlike humans who use offline hardware wallets, autonomous agents must store private keys in live server memory to sign thousands of automated transactions daily.</p>
+          </div>
+          <div class="feature-box">
+            <h4>Mempool Shor's Vulnerability</h4>
+            <p>Every Solana Ed25519 transaction exposes public keys. Shor's algorithm solves elliptic-curve discrete logs in polynomial time, creating a total drainage risk.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="slide-tag">02 // THE MARKET OPPORTUNITY</div>
+      <h2>Where <span class="gradient-text">AI Agents Meet Quantum Security</span></h2>
+      <div class="slide-content">
+        <p>AI agent frameworks (ElizaOS, Virtuals, Autonolas) represent the fastest-growing category in crypto, projected to command hundreds of billions in autonomous assets.</p>
+        <ul>
+          <li><strong>Institutional Mandate:</strong> Government standards (NIST FIPS-204 ML-DSA) require post-quantum compliance.</li>
+          <li><strong>The Gap:</strong> No Solana AI agent project addresses quantum risk—until now.</li>
+          <li><strong>$AIQT Market Fit:</strong> Merging the viral growth of the agent economy with institutional-grade cryptographic longevity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="slide-tag">03 // ARCHITECTURE & SOLUTION</div>
+      <h2>Dual-Tier <span class="gradient-text">Quantum Vault Security</span></h2>
+      <div class="slide-content">
+        <p>Solving the signature bloat crisis without sacrificing Solana's sub-second execution speeds:</p>
+        <div class="grid-2">
+          <div class="feature-box">
+            <h4>Tier 1: Fast Path (&lt; 10k $AIQT)</h4>
+            <p>Sub-second execution (~400ms) on Solana Ed25519 for routine micropayments, RPC fees, and sub-agent hiring.</p>
+          </div>
+          <div class="feature-box">
+            <h4>Tier 2: Quantum Shield (≥ 10k $AIQT)</h4>
+            <p>Mandatory NIST FIPS-204 ML-DSA Lattice Dual-Lock. Even if a server key is compromised, the treasury cannot be drained.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+      <div class="slide-tag">04 // TRACTION & ECOSYSTEM</div>
+      <h2>Built & Verified <span class="gradient-text">Live Codebase</span></h2>
+      <div class="slide-content">
+        <p>Unlike speculative meme concepts, AIQT arrives with working, open-sourced technology:</p>
+        <ul>
+          <li><strong>Flagship Sentinel Agent:</strong> Live on Solana Mainnet RPC issuing verifiable lattice proofs.</li>
+          <li><strong>Official ElizaOS Plugin:</strong> <code>@aiqt/plugin-solana-quantum</code> published for the largest AI agent developer ecosystem.</li>
+          <li><strong>Benchmarked Performance:</strong> 131,597 ops/s under lattice encryption with zero routine TPS degradation.</li>
+          <li><strong>100/100 Security Audit:</strong> Zero freeze authority, revoked mint authority, and 100% LP burn guarantee.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+      <div class="slide-tag">05 // VALUE CAPTURE & FLYWHEEL</div>
+      <h2>Programmatic <span class="gradient-text">0.5% M2M Deflationary Sink</span></h2>
+      <div class="slide-content">
+        <p>Every autonomous task executed across agent swarms feeds the value-capture engine:</p>
+        <div class="grid-2">
+          <div class="feature-box">
+            <h4>50% Permanently Burned 🔥</h4>
+            <p>Incinerated directly to Solana address 1111...1111, continuously reducing circulating supply as bot volume scales.</p>
+          </div>
+          <div class="feature-box">
+            <h4>50% Agent Compute Fund ⚡</h4>
+            <p>Directs protocol revenue to fund GPU compute, LLM API tokens, and continuous autonomous agent operations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+      <div class="slide-tag">06 // TOKENOMICS</div>
+      <h2>Fair Launch <span class="gradient-text">Liquidity Architecture</span></h2>
+      <div class="slide-content">
+        <p><strong>Fixed Total Supply: 1,000,000,000 $AIQT (1 Billion forever)</strong></p>
+        <ul>
+          <li><strong>60% Public DEX Liquidity:</strong> Paired with SOL on Raydium with <strong>100% permanent LP token incineration</strong>.</li>
+          <li><strong>15% Agent Staking Reserve:</strong> Performance yield for verified third-party AI agents.</li>
+          <li><strong>10% Core Development:</strong> Multi-sig locked with 6-month cliff and 18-month linear vesting.</li>
+          <li><strong>10% Marketing & Grants:</strong> $50,000 builder grants and tier-1 KOL amplification.</li>
+          <li><strong>5% Flagship Agent Treasury:</strong> Seed capital for autonomous operations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+      <div class="slide-tag">07 // ROADMAP</div>
+      <h2>The Path to <span class="gradient-text">Multi-Chain Agent Supremacy</span></h2>
+      <div class="slide-content">
+        <ul>
+          <li><strong>Phase 1 (Day 1–30):</strong> Genesis Launch, Raydium LP Burn, DEXScreener & CoinGecko Fast-Track.</li>
+          <li><strong>Phase 2 (Month 2):</strong> $50,000 Builder Grants & Decentralized Agent Marketplace.</li>
+          <li><strong>Phase 3 (Months 3–4):</strong> Tier-2 Centralized Exchange Listings (MEXC, Bitget, Gate.io).</li>
+          <li><strong>Phase 4 (Months 5–6):</strong> Cross-Chain Post-Quantum Bridge to Base L2 and Ethereum.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="index.html" class="btn">🌐 Web DApp</a>
+    <div class="nav-btn-group">
+      <button class="btn" onclick="prevSlide()">← Previous</button>
+      <button class="btn btn-primary" onclick="nextSlide()">Next →</button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const indicator = document.getElementById('slideIndicator');
+
+    function showSlide(index) {
+      slides.forEach((s, i) => s.classList.toggle('active', i === index));
+      indicator.innerText = `Slide ${index + 1} of ${slides.length}`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>
