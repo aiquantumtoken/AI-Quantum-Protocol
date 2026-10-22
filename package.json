@@ -1,10 +1,14 @@
 {
-  "name": "wonderful-einstein",
+  "name": "@aiqt/protocol",
   "version": "1.0.0",
-  "description": "> **The First Post-Quantum Autonomous Agent Network on Solana.**",
+  "description": "The First Post-Quantum Autonomous Agent Network on Solana.",
   "main": "index.js",
+  "bin": {
+    "aiqt": "./bin/aiqt-cli.mjs"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cli": "node ./bin/aiqt-cli.mjs"
   },
   "keywords": [],
   "author": "",
