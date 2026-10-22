@@ -2,6 +2,7 @@
   "program_id": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
   "symbol": "AIQT",
   "name": "AI Quantum Protocol",
+  "devnet_mint_address": "FfMfS6WARfZWS1ytMqTBiwsJzPUJnRpKNpPqrWoAcaGa",
   "decimals": 9,
   "total_supply": 1000000000,
   "total_supply_base_units": "1000000000000000000",
@@ -43,8 +44,8 @@
     "name": "AI Quantum Protocol",
     "symbol": "AIQT",
     "description": "The first post-quantum autonomous agent network on Solana. High-speed M2M settlements secured by lattice-based cryptography.",
-    "image": "https://raw.githubusercontent.com/aiqt-protocol/branding/main/logo.png",
-    "external_url": "https://aiqt.network",
+    "image": "https://raw.githubusercontent.com/aiquantumtoken/AI-Quantum-Protocol/main/assets/logo.svg",
+    "external_url": "https://aiquantumtoken.github.io/AI-Quantum-Protocol/",
     "attributes": [
       {
         "trait_type": "Network",
