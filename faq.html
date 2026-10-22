@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Quantum Protocol ($AIQT) | Frequently Asked Questions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 36, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --solana-purple: #9945FF;
+      --solana-green: #14F195;
+      --neon-cyan: #00F0FF;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(153, 69, 255, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(20, 241, 149, 0.12) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      z-index: -1;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .badge {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      color: #000;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--solana-green); }
+    .container {
+      max-width: 900px;
+      margin: 3.5rem auto 5rem;
+      padding: 0 5%;
+      flex: 1;
+    }
+    .header-box {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .tag {
+      color: var(--solana-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--solana-purple), var(--solana-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .search-input:focus { border-color: var(--solana-green); }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border 0.2s;
+    }
+    .faq-item:hover { border-color: rgba(153, 69, 255, 0.4); }
+    .faq-question {
+      padding: 1.4rem 1.8rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      user-select: none;
+    }
+    .faq-icon {
+      font-size: 1.3rem;
+      color: var(--solana-green);
+      transition: transform 0.2s;
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 1.8rem 1.4rem;
+      color: #D1D5DB;
+      font-size: 1rem;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.03);
+      padding-top: 1rem;
+    }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--neon-cyan); }
+    footer {
+      text-align: center;
+      padding: 2.5rem 5%;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <nav>
+    <a href="index.html" class="logo">
+      <svg width="24" height="24" viewBox="0 0 500 500">
+        <polygon points="250,70 390,150 390,310 250,390 110,310 110,150" fill="none" stroke="#14F195" stroke-width="40" />
+        <circle cx="250" cy="250" r="90" fill="#9945FF" />
+      </svg>
+      AI Quantum Protocol
+      <span class="badge">$AIQT</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Web DApp</a>
+      <a href="airdrop.html">Airdrop</a>
+      <a href="pitch.html">Pitch Deck</a>
+      <a href="https://github.com/aiquantumtoken/AI-Quantum-Protocol" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="header-box">
+      <div class="tag">KNOWLEDGE BASE & ARCHITECTURE</div>
+      <h1>Frequently Asked <span class="gradient-text">Questions</span></h1>
+      <p style="color: var(--text-muted);">Everything you need to know about post-quantum cryptography, agent vaults, and $AIQT economics.</p>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search questions (e.g., Shor's algorithm, burn rate, tokenomics)..." oninput="filterFaq()">
+    </div>
+
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is AI Quantum Protocol ($AIQT)?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          $AIQT is the first post-quantum machine-to-machine (M2M) settlement currency and smart custody layer built natively on Solana (Token-2022). It protects autonomous AI agents from future quantum attacks while providing sub-second micropayments with an immutable 0.5% deflationary burn.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Why do 24/7 autonomous AI agents need post-quantum security?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Unlike humans who store keys offline on a Ledger, autonomous AI agents operate 24/7 on servers, keeping hot private keys in memory to sign thousands of automated transactions. Every transaction exposes their public key in the mempool. Standard Solana accounts rely on Ed25519 (elliptic curves), which Shor's algorithm solves in polynomial time. Once quantum computing reaches scale, every single agent treasury will be drained unless protected by post-quantum lattice cryptography.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the Dual-Tier Quantum Vault solve signature bloat?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Post-quantum signatures (like NIST ML-DSA) are ~3,300 bytes (50x larger than Ed25519). If every small transaction used them, Solana's TPS would plummet. $AIQT introduces a Dual-Tier state machine:
+          <br><br>
+          • <strong>Tier 1 Fast Path (&lt; 10,000 $AIQT):</strong> Sub-second execution (~400ms) on Ed25519 for routine micropayments (64 bytes).<br>
+          • <strong>Tier 2 Quantum Shield (≥ 10,000 $AIQT):</strong> Mandatory NIST FIPS-204 ML-DSA Lattice Dual-Lock. High-value treasury transfers are 100% immune to Shor's algorithm.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the 0.5% M2M deflationary burn work?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          $AIQT is deployed using Solana Token-2022's native TransferFeeConfig extension. Every time an agent hires another agent or pays an API fee, an immutable 0.5% (50 bps) protocol fee is processed on-chain. 50% is permanently incinerated to the Solana dead address (1111...1111), and 50% funds autonomous agent compute/GPU resources.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can the team mint more tokens or freeze wallets?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <strong>No.</strong> The Mint Authority is revoked immediately following the 1 Billion genesis mint, making inflation mathematically impossible. The Freeze Authority is completely disabled (None), guaranteeing that user and agent wallets can never be frozen or blacklisted. The protocol achieved a 100/100 Clean score in our pre-launch security audit.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How do external developers use the SDK and ElizaOS plugin?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Developers can install <code>@aiqt/agent-sdk</code> or <code>@aiqt/plugin-solana-quantum</code> via npm to automatically grant any AI agent post-quantum lattice commitments and M2M fee calculation in 3 lines of code.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 AI Quantum Protocol ($AIQT). Decentralized Autonomous Infrastructure on Solana.</p>
+  </footer>
+
+  <script>
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle('active');
+    }
+
+    function filterFaq() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
