@@ -4,7 +4,8 @@
 
 [![Solana](https://img.shields.io/badge/Network-Solana-9945FF?logo=solana)](https://solana.com)
 [![Token](https://img.shields.io/badge/Ticker-$AIQT-00FFA3)](#)
-[![Status](https://img.shields.io/badge/Status-Development-orange)](#)
+[![CI](https://github.com/aiquantumtoken/AI-Quantum-Protocol/actions/workflows/ci.yml/badge.svg)](https://github.com/aiquantumtoken/AI-Quantum-Protocol/actions)
+[![Security Audit](https://img.shields.io/badge/Audit-100%2F100_Clean-14F195)](https://github.com/aiquantumtoken/AI-Quantum-Protocol/blob/main/AUDIT_REPORT.md)
 
 ---
 
