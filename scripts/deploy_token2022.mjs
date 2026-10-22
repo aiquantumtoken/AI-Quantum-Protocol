@@ -37,12 +37,23 @@ async function deployToken2022(isDryRun = false) {
   console.log("==================================================");
 
   const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-  const payer = Keypair.generate();
+  // Check or generate persistent deployer keypair
+  const keyPath = "deployer_keypair.json";
+  let payer;
+  if (fs.existsSync(keyPath)) {
+    const raw = JSON.parse(fs.readFileSync(keyPath, "utf-8"));
+    payer = Keypair.fromSecretKey(Uint8Array.from(raw));
+  } else {
+    payer = Keypair.generate();
+    fs.writeFileSync(keyPath, JSON.stringify(Array.from(payer.secretKey)));
+  }
+
   const mintKeypair = Keypair.generate();
   const mint = mintKeypair.publicKey;
 
   console.log(`• Network: Solana Devnet`);
-  console.log(`• Mint Address (generated): ${mint.toBase58()}`);
+  console.log(`• Deployer / Payer Address: ${payer.publicKey.toBase58()}`);
+  console.log(`• Mint Address (target): ${mint.toBase58()}`);
   console.log(`• Transfer Fee: ${FEE_BASIS_POINTS / 100}% (50 bps)`);
   console.log(`• Total Fixed Supply: 1,000,000,000 $AIQT`);
 
@@ -59,12 +70,28 @@ async function deployToken2022(isDryRun = false) {
     };
   }
 
-  console.log(`• Requesting devnet airdrop for payer: ${payer.publicKey.toBase58()}...`);
-  try {
-    const airdropSig = await connection.requestAirdrop(payer.publicKey, 2 * LAMPORTS_PER_SOL);
-    await connection.confirmTransaction(airdropSig);
-    console.log("• Airdrop confirmed.");
+  // Check current balance
+  const balance = await connection.getBalance(payer.publicKey);
+  console.log(`• Current Balance: ${(balance / LAMPORTS_PER_SOL).toFixed(4)} SOL`);
 
+  if (balance < 0.05 * LAMPORTS_PER_SOL) {
+    console.log("• Balance low. Attempting faucet request...");
+    try {
+      const airdropSig = await connection.requestAirdrop(payer.publicKey, 1 * LAMPORTS_PER_SOL);
+      await connection.confirmTransaction(airdropSig);
+      console.log("• Airdrop confirmed.");
+    } catch (err) {
+      console.log(`\n⚠️  Faucet Rate-Limited (429).`);
+      console.log(`To fund this deployer on Devnet:`);
+      console.log(`1. Visit: https://faucet.solana.com`);
+      console.log(`2. Paste Address: ${payer.publicKey.toBase58()}`);
+      console.log(`3. Click 'Confirm Airdrop' (0.5 SOL is enough).`);
+      console.log(`4. Re-run: node scripts/deploy_token2022.mjs`);
+      return { status: "pending_funds", deployer: payer.publicKey.toBase58() };
+    }
+  }
+
+  try {
     const extensions = [ExtensionType.TransferFeeConfig];
     const mintLen = getMintLen(extensions);
     const lamports = await connection.getMinimumBalanceForRentExemption(mintLen);

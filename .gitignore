@@ -3,6 +3,7 @@
 *.pem
 *.key
 agent_wallet.json
+deployer_keypair.json
 accounts.txt
 
 # Internal Operations & Social Admin Tools
